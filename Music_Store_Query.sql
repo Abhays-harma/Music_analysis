@@ -92,8 +92,7 @@ ORDER BY number_of_songs DESC
 LIMIT 10;
 
 
-/* Q3: Return all the track names that have a song length longer than the average song length. 
-Return the Name and Milliseconds for each track. Order by the song length with the longest songs listed first. */
+/* Q3: Return all the track names that have a song length longer than the average song length. */
 
 SELECT name,miliseconds
 FROM track
@@ -109,11 +108,7 @@ ORDER BY miliseconds DESC;
 
 /* Q1: Find how much amount spent by each customer on artists? Write a query to return customer name, artist name and total spent */
 
-/* Steps to Solve: First, find which artist has earned the most according to the InvoiceLines. Now use this artist to find 
-which customer spent the most on this artist. For this query, you will need to use the Invoice, InvoiceLine, Track, Customer, 
-Album, and Artist tables. Note, this one is tricky because the Total spent in the Invoice table might not be on a single product, 
-so you need to use the InvoiceLine table to find out how many of each product was purchased, and then multiply this by the price
-for each artist. */
+
 
 WITH best_selling_artist AS (
 	SELECT artist.artist_id AS artist_id, artist.name AS artist_name, SUM(invoice_line.unit_price*invoice_line.quantity) AS total_sales
@@ -223,8 +218,5 @@ JOIN country_max_spending ms
 ON cc.billing_country = ms.billing_country
 WHERE cc.total_spending = ms.max_spending
 ORDER BY 1;
-
-
-/* source: www.youtube.com/@RishabhMishraOfficial */
 
 /* Thank You :) */
